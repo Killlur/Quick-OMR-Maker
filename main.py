@@ -83,7 +83,6 @@ def make_gui():
             genvariablelist = list(f"VAR{numoftypes}{typeofquestion}{p+1}" for p in range(int(numlist[i])))
             for k in genvariablelist:
                 w = tk.StringVar(OMRwindow,name=k)
-                w.set(value="UA")
                 print(w.get())
             strvariablelist.append(genvariablelist)
             print(strvariablelist)
@@ -96,8 +95,10 @@ def make_gui():
                     tk.Entry(OMRwindow, background='light blue',textvariable=genvariablelist[x]).grid(row=x % 10 + 1, column=(2 * (x // 10 + 1)))
                 elif typeofquestion ==3:
                     tk.Radiobutton(OMRwindow,text="UA",value="UA",variable=genvariablelist[x],state="normal").grid(row=x%10 +1 ,column=6*(x//10) + 2)
+
                     for j in range(numofoptionslist[optionlistindex]):
                        tk.Radiobutton(OMRwindow,text=((("A B C D E F G H I J K L M N O P Q R S T U V Y X Y Z").split())[j]),value=((("A B C D E F G H I J K L M N O P Q R S T U V Y X Y Z").split())[j]),variable=genvariablelist[x],state='normal').grid(row=x%10+1,column=(6*(x//10) + 3+j))
+                OMRwindow.setvar(genvariablelist[x],value="UA")
                 lastquestionnum += 1
             if typeofquestion in (3,4):
                 optionlistindex+=1
